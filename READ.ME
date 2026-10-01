@@ -1,0 +1,76 @@
+# Matrix From Scratch
+
+An educational implementation of matrix operations in Python, built to make the
+data layout, algorithms, and performance trade-offs visible.
+
+> **Status:** Work in progress
+>
+> This repository is part of a study project. Some matrix operations are still
+> intentionally unfinished and are being implemented and tested chapter by
+> chapter. A C++ implementation is planned after the Python version is complete.
+
+## What is inside?
+
+The project explores how a matrix can be represented and manipulated without
+hiding the important details behind a high-level library:
+
+- flat row-major storage, similar to a C array and NumPy's default layout
+- construction from rows, columns, flat buffers, zeros, identity matrices, and seeded random data
+- indexing, assignment, equality, representation, transpose, and slicing
+- matrix-vector multiplication and three matrix-multiplication views
+- comparison with NumPy's matrix multiplication
+- unit tests organized around the lecture chapters
+- small benchmark scripts for timing and peak Python memory usage
+
+The public Python API is exposed through `matrix.Matrix`.
+
+## Quick start
+
+The project requires **Python 3.12 or newer**. From the repository root:
+
+## Example
+
+```python
+from matrix import Matrix
+
+A = Matrix.from_rows([[1, 2], [3, 4]])
+B = Matrix.eye(2)
+
+print(A.shape)       # (2, 2)
+print(A.transpose())
+print(A @ B)
+```
+
+Matrices use the conventional `(rows, columns)` shape. Vectors are represented
+as matrices: a column vector has shape `(n, 1)` and a row vector has shape
+`(1, n)`.
+
+## Project layout
+
+```text
+.
+├── python/
+│   ├── matrix/              # Matrix implementation and debugging helpers
+│   ├── tests/               # Pytest test suite
+│   ├── bench/               # Performance and plotting scripts
+│   └── pyproject.toml       # Project metadata and tool configuration
+├── results/                 # Generated benchmark output
+└── READ.ME                  # Project documentation
+```
+
+
+## Development tools
+
+## Learning goals
+
+This project is designed to connect mathematical notation with concrete Python
+code: how shapes constrain operations, how row-major storage affects access
+patterns, and how different views of matrix multiplication can produce the same
+result. It also provides a small base for comparing the Python implementation
+with the planned C++ version.
+
+## Credits
+
+The project was developed for study and experimentation. Local AI assistance,
+including Qwen3 30B A3B 2507, was used as a learning aid while writing and
+understanding the code.
